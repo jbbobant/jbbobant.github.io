@@ -1,15 +1,230 @@
-<html lang="en">
+<html lang="fr" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Mon Portfolio</title>
+    <!-- Chargement de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configuration de la police Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Style pour la timeline (le trait vertical) */
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -21px;
+            /* Positionne le point sur la ligne */
+            top: 50%;
+            transform: translateY(-50%);
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #3b82f6;
+            /* Couleur du point (bleu) */
+            border: 2px solid white;
+        }
+    </style>
 </head>
 
-<body>
-    <h1>
-        Mon portfolio
-    </h1>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- =========== Section Héros (Accueil) =========== -->
+    <header class="bg-white shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-blue-600">Votre Nom</div>
+            <div class="space-x-4">
+                <a href="#projets" class="text-gray-600 hover:text-blue-600">Projets</a>
+                <a href="#experience" class="text-gray-600 hover:text-blue-600">Parcours</a>
+                <a href="#contact" class="text-gray-600 hover:text-blue-600">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+
+        <!-- Présentation courte -->
+        <section id="accueil" class="text-center py-16">
+            <img src="https://placehold.co/150x150/e0e7ff/3b82f6?text=Moi" alt="Votre photo"
+                class="w-40 h-40 rounded-full mx-auto mb-6 border-4 border-white shadow-lg">
+            <h1 class="text-4xl font-bold mb-4">Bonjour, je suis [Votre Nom]</h1>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                [Mettez ici une courte présentation de vous. Par exemple : "Développeur passionné / Spécialiste en
+                bio-informatique avec un vif intérêt pour l'œnologie. Bienvenue sur mon portfolio." ]
+            </p>
+        </section>
+
+        <!-- =========== Section Projets (Cartes) =========== -->
+        <section id="projets" class="py-16">
+            <h2 class="text-3xl font-bold text-center mb-12">Mes Projets</h2>
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+
+                <!-- Projet 1: Vin -->
+                <div
+                    class="bg-white rounded-lg shadow-xl overflow-hidden transform transition-transform hover:scale-105 duration-300">
+                    <img src="https://placehold.co/600x400/fca5a5/b91c1c?text=Projet+Vin" alt="Illustration projet vin"
+                        class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-3">Projet Œnologie</h3>
+                        <p class="text-gray-600 mb-6">
+                            [Courte description du projet sur le vin. De quoi s'agit-il ?]
+                        </p>
+                        <!-- Ce bouton fait défiler vers la section #details-vin -->
+                        <a href="#details-vin"
+                            class="inline-block bg-blue-600 text-white font-semibold px-6 py-2 rounded-lg shadow-md hover:bg-blue-700 transition-colors">
+                            Voir les détails
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Projet 2: Bio-informatique -->
+                <div
+                    class="bg-white rounded-lg shadow-xl overflow-hidden transform transition-transform hover:scale-105 duration-300">
+                    <img src="https://placehold.co/600x400/a5f3fc/0891b2?text=Projet+Bio-info"
+                        alt="Illustration projet bio-informatique" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-3">Projet Bio-informatique</h3>
+                        <p class="text-gray-600 mb-6">
+                            [Courte description du projet en bio-informatique. Quel problème résout-il ?]
+                        </p>
+                        <!-- Ce bouton fait défiler vers la section #details-bioinfo -->
+                        <a href="#details-bioinfo"
+                            class="inline-block bg-blue-600 text-white font-semibold px-6 py-2 rounded-lg shadow-md hover:bg-blue-700 transition-colors">
+                            Voir les détails
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- =========== Section Expérience (Timeline) =========== -->
+        <section id="experience" class="py-16">
+            <h2 class="text-3xl font-bold text-center mb-16">Expériences et Éducation</h2>
+
+            <div class="max-w-3xl mx-auto">
+                <!-- Wrapper pour la timeline -->
+                <div class="relative pl-8 border-l-2 border-blue-200">
+
+                    <!-- Élément de la timeline 1 -->
+                    <div class="mb-12 relative timeline-item">
+                        <div class="bg-white p-6 rounded-lg shadow-xl">
+                            <span class="text-sm font-semibold text-blue-600">[Année - Année]</span>
+                            <h3 class="text-xl font-bold mt-1 mb-2">[Titre de l'expérience ou du diplôme]</h3>
+                            <h4 class="text-md font-semibold text-gray-700 mb-3">[Nom de l'entreprise ou de l'école]
+                            </h4>
+                            <p class="text-gray-600">
+                                [Description de vos missions, ce que vous avez appris, les technologies utilisées, etc.]
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Élément de la timeline 2 -->
+                    <div class="mb-12 relative timeline-item">
+                        <div class="bg-white p-6 rounded-lg shadow-xl">
+                            <span class="text-sm font-semibold text-blue-600">[Année - Année]</span>
+                            <h3 class="text-xl font-bold mt-1 mb-2">[Titre de l'expérience ou du diplôme]</h3>
+                            <h4 class="text-md font-semibold text-gray-700 mb-3">[Nom de l'entreprise ou de l'école]
+                            </h4>
+                            <p class="text-gray-600">
+                                [Description de vos missions, ce que vous avez appris, les technologies utilisées, etc.]
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Élément de la timeline 3 -->
+                    <div class="mb-12 relative timeline-item">
+                        <div class="bg-white p-6 rounded-lg shadow-xl">
+                            <span class="text-sm font-semibold text-blue-600">[Année - Année]</span>
+                            <h3 class="text-xl font-bold mt-1 mb-2">[Titre de l'expérience ou du diplôme]</h3>
+                            <h4 class="text-md font-semibold text-gray-700 mb-3">[Nom de l'entreprise ou de l'école]
+                            </h4>
+                            <p class="text-gray-600">
+                                [Description de vos missions, ce que vous avez appris, les technologies utilisées, etc.]
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Ajoutez autant d'éléments que nécessaire -->
+
+                </div>
+            </div>
+        </section>
+
+        <!-- =========== Section Détails Projets =========== -->
+        <!-- Ces sections sont invisibles jusqu'à ce qu'on clique sur les boutons -->
+
+        <!-- Détails Projet Vin -->
+        <section id="details-vin" class="py-16 bg-white rounded-lg shadow-lg my-12">
+            <div class="max-w-3xl mx-auto px-6">
+                <h2 class="text-3xl font-bold mb-6">Détails : Projet Œnologie</h2>
+                <img src="https://placehold.co/800x400/fca5a5/b91c1c?text=Bannière+Vin" alt="Bannière projet vin"
+                    class="w-full h-64 object-cover rounded-lg mb-6">
+                <p class="text-gray-700 leading-relaxed mb-4">
+                    [Mettez ici une description très détaillée de votre projet sur le vin. Quels étaient les objectifs ?
+                    Quelle méthodologie avez-vous employée ? Avez-vous utilisé des outils spécifiques (analyse de
+                    données, R, Python, etc.) ?]
+                </p>
+                <p class="text-gray-700 leading-relaxed">
+                    [Continuez la description. Quels ont été les résultats ? Avez-vous un lien vers le projet (GitHub,
+                    un site web) ?]
+                </p>
+                <a href="#projets" class="inline-block mt-6 text-blue-600 hover:text-blue-800 transition-colors">&larr;
+                    Retour aux projets</a>
+            </div>
+        </section>
+
+        <!-- Détails Projet Bio-info -->
+        <section id="details-bioinfo" class="py-16 bg-white rounded-lg shadow-lg my-12">
+            <div class="max-w-3xl mx-auto px-6">
+                <h2 class="text-3xl font-bold mb-6">Détails : Projet Bio-informatique</h2>
+                <img src="https://placehold.co/800x400/a5f3fc/0891b2?text=Bannière+Bio-info"
+                    alt="Bannière projet bio-informatique" class="w-full h-64 object-cover rounded-lg mb-6">
+                <p class="text-gray-700 leading-relaxed mb-4">
+                    [Mettez ici une description très détaillée de votre projet en bio-informatique. Quel était le
+                    contexte (génomique, protéomique...) ? Quels outils ou langages (Python, R, Bioconductor,
+                    Snakemake...) avez-vous utilisés ?]
+                </p>
+                <p class="text-gray-700 leading-relaxed">
+                    [Quels ont été les résultats majeurs ? S'agissait-il d'un projet académique ou personnel ? Avez-vous
+                    un lien vers le code ou une publication ?]
+                </p>
+                <a href="#projets" class="inline-block mt-6 text-blue-600 hover:text-blue-800 transition-colors">&larr;
+                    Retour aux projets</a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- =========== Footer (Contact) =========== -->
+    <footer id="contact" class="bg-gray-800 text-gray-300 py-12">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-2xl font-bold text-white mb-6">Contactez-moi</h2>
+            <p class="mb-6">
+                N'hésitez pas à me contacter si mon profil vous intéresse.
+            </p>
+            <div class="flex justify-center space-x-6">
+                <a href="mailto:[votre.email@exemple.com]" class="text-blue-400 hover:text-white transition-colors">
+                    [votre.email@exemple.com]
+                </a>
+                <a href="[lien_vers_votre_linkedin]" target="_blank" rel="noopener noreferrer"
+                    class="text-blue-400 hover:text-white transition-colors">
+                    LinkedIn
+                </a>
+                <a href="[lien_vers_votre_github]" target="_blank" rel="noopener noreferrer"
+                    class="text-blue-400 hover:text-white transition-colors">
+                    GitHub
+                </a>
+            </div>
+        </div>
+    </footer>
+
 </body>
 
 </html>
