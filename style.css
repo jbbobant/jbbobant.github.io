@@ -5,16 +5,19 @@
     padding: 0;
 }
 
-body {
-    font-family: 'Inter', sans-serif;
-    background-color: #f3f4f6; /* gray-100 */
-    color: #1f2937; /* gray-800 */
-    line-height: 1.6;
-    scroll-behavior: smooth;
-}
-
 html {
     scroll-behavior: smooth;
+    /* CRUCIAL : Empêche le header de cacher le titre des sections lors du scroll */
+    scroll-padding-top: 100px;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f3f4f6;
+    /* gray-100 */
+    color: #1f2937;
+    /* gray-800 */
+    line-height: 1.6;
 }
 
 a {
@@ -35,44 +38,74 @@ img {
     padding: 0 1.5rem;
 }
 
-.text-center { text-align: center; }
-.font-bold { font-weight: 700; }
-.hidden-mobile { display: none; } /* Mobile first */
+.text-center {
+    text-align: center;
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+.hidden-mobile {
+    display: none;
+}
+
+/* Mobile first */
 
 @media (min-width: 768px) {
-    .hidden-mobile { display: flex; }
-    .mobile-only { display: none; }
+    .hidden-mobile {
+        display: flex;
+    }
+
+    .mobile-only {
+        display: none;
+    }
 }
 
 /* --- HEADER --- */
 header {
-    background-color: white;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    background-color: rgba(255, 255, 255, 0.95);
+    /* Légère transparence moderne */
+    backdrop-filter: blur(10px);
+    /* Effet de flou "verre dépoli" style iOS/Tailwind */
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+    /* Ombre plus douce */
     position: sticky;
     top: 0;
     z-index: 50;
+    transition: all 0.3s ease;
 }
 
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 1.5rem;
+    /* Plus grand padding pour un header plus "aéré" */
+    padding: 1.25rem 2rem;
+    height: 5rem;
+    /* Hauteur explicite pour le calcul de scroll-padding */
 }
 
 .logo {
     font-size: 1.5rem;
-    font-weight: 700;
-    color: #2563eb; /* blue-600 */
+    font-weight: 800;
+    /* Plus gras pour moderniser */
+    color: #2563eb;
+    /* blue-600 */
+    letter-spacing: -0.025em;
+    /* Tight tracking style Tailwind */
 }
 
 .nav-links {
-    gap: 1.5rem;
+    gap: 2.5rem;
+    /* Espacement plus large entre les liens */
 }
 
 .nav-links a {
-    color: #4b5563; /* gray-600 */
+    color: #4b5563;
+    /* gray-600 */
     font-weight: 500;
+    font-size: 1rem;
 }
 
 .nav-links a:hover {
@@ -81,7 +114,8 @@ nav {
 
 /* --- HERO SECTION --- */
 .hero {
-    padding: 4rem 1.5rem;
+    padding: 6rem 1.5rem 4rem 1.5rem;
+    /* Plus d'espace au dessus */
     text-align: center;
 }
 
@@ -90,41 +124,63 @@ nav {
     height: 160px;
     border-radius: 50%;
     border: 4px solid white;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    /* shadow-xl Tailwind */
     object-fit: cover;
-    margin: 0 auto 1.5rem auto;
+    margin: 0 auto 2rem auto;
 }
 
 .hero h1 {
-    font-size: 2.25rem;
-    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    /* text-4xl */
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.025em;
+    color: #111827;
+    /* gray-900 */
 }
 
 .hero p {
     font-size: 1.25rem;
+    /* text-xl */
     color: #4b5563;
     max-width: 42rem;
     margin: 0 auto;
+    line-height: 1.75;
 }
 
 /* --- SECTIONS GENERAL --- */
 section {
-    padding: 4rem 0;
+    /* Augmentation significative de l'espace vertical pour séparer les sections */
+    padding: 6rem 0;
+}
+
+/* Plus d'espace sur desktop */
+@media (min-width: 1024px) {
+    section {
+        padding: 8rem 0;
+    }
 }
 
 h2 {
-    font-size: 1.875rem;
-    font-weight: 700;
+    font-size: 2.25rem;
+    /* text-3xl */
+    font-weight: 800;
     text-align: center;
-    margin-bottom: 3rem;
+    color: #111827;
+    margin-bottom: 4rem;
+    /* Plus d'espace sous les titres */
+    letter-spacing: -0.025em;
 }
 
 /* --- PROJECTS GRID --- */
 .projects-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 2rem;
-    max-width: 56rem; /* max-w-4xl */
+    gap: 2.5rem;
+    /* Gap plus large */
+    max-width: 64rem;
+    /* max-w-5xl pour un layout plus large */
     margin: 0 auto;
 }
 
@@ -136,27 +192,34 @@ h2 {
 
 .card {
     background-color: white;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    border-radius: 1rem;
+    /* Plus arrondi (rounded-xl) */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     overflow: hidden;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
     height: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    /* Bordure subtile */
 }
 
 .card:hover {
-    transform: scale(1.05);
+    transform: translateY(-5px);
+    /* Effet de levée plus moderne */
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 .card-img {
     width: 100%;
-    height: 12rem;
+    height: 14rem;
+    /* Image un peu plus haute */
     object-fit: cover;
 }
 
 .card-content {
-    padding: 1.5rem;
+    padding: 2rem;
+    /* Padding interne plus grand */
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -165,13 +228,15 @@ h2 {
 .card-content h3 {
     font-size: 1.5rem;
     font-weight: 700;
-    margin-bottom: 0.75rem;
+    margin-bottom: 1rem;
+    color: #1f2937;
 }
 
 .card-content p {
     color: #4b5563;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     flex-grow: 1;
+    line-height: 1.625;
 }
 
 .btn {
@@ -179,35 +244,46 @@ h2 {
     background-color: #2563eb;
     color: white;
     font-weight: 600;
-    padding: 0.5rem 1.5rem;
+    padding: 0.75rem 2rem;
+    /* Bouton plus grand */
     border-radius: 0.5rem;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s;
+    box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+    /* Ombre colorée */
+    transition: background-color 0.3s, transform 0.2s;
     width: fit-content;
     text-align: center;
 }
 
 .btn:hover {
-    background-color: #1d4ed8; /* blue-700 */
+    background-color: #1d4ed8;
+    /* blue-700 */
+    transform: translateY(-1px);
 }
 
 /* --- TIMELINE (JOURNEY) --- */
 .timeline-wrapper {
-    max-width: 48rem; /* max-w-3xl */
+    max-width: 48rem;
     margin: 0 auto;
     padding-left: 1rem;
 }
 
 .timeline-border {
     position: relative;
-    border-left: 2px solid #bfdbfe; /* blue-200 */
-    padding-left: 2rem;
+    border-left: 2px solid #bfdbfe;
+    padding-left: 2.5rem;
+    /* Plus d'espace entre la ligne et le contenu */
     margin-left: 1rem;
 }
 
 .timeline-item {
     position: relative;
-    margin-bottom: 3rem;
+    margin-bottom: 4rem;
+    /* Plus d'espace vertical entre les items */
+}
+
+/* Ajustement pour le dernier item */
+.timeline-item:last-child {
+    margin-bottom: 0;
 }
 
 .timeline-icon {
@@ -215,72 +291,91 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 2.5rem; /* 10 tailwind = 2.5rem */
-    height: 2.5rem;
+    width: 3rem;
+    /* Icone plus grande */
+    height: 3rem;
     background-color: #2563eb;
     border-radius: 50%;
-    left: -3.35rem; /* Ajustement précis pour centrer sur la ligne */
+    left: -4.1rem;
+    /* Recalculé pour centrer : 2.5rem padding + 2px border + 1.5rem (moitié icone) approx */
     top: 0;
-    border: 4px solid #f3f4f6; /* match body background */
+    border: 4px solid #f3f4f6;
     z-index: 10;
     color: white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
 .timeline-icon svg {
-    width: 1.25rem;
-    height: 1.25rem;
+    width: 1.5rem;
+    height: 1.5rem;
 }
 
 .timeline-content {
     background-color: white;
-    padding: 1.5rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    /* Plus aéré */
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.03);
 }
 
 .timeline-date {
     font-size: 0.875rem;
-    font-weight: 600;
+    font-weight: 700;
     color: #2563eb;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: block;
+    margin-bottom: 0.5rem;
 }
 
 .timeline-content h3 {
     font-size: 1.25rem;
-    font-weight: 700;
-    margin: 0.25rem 0 0.5rem 0;
+    font-weight: 800;
+    margin: 0 0 0.25rem 0;
+    color: #111827;
 }
 
 .timeline-content h4 {
     font-size: 1rem;
     font-weight: 600;
-    color: #374151;
-    margin-bottom: 0.75rem;
-}
-
-.timeline-content p {
     color: #4b5563;
     margin-bottom: 1rem;
 }
 
+.timeline-content p {
+    color: #4b5563;
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+}
+
+/* Correction pour les bulles de skills */
+.skills-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
 .skill-tag {
     display: inline-block;
-    background-color: #eff6ff; /* blue-50 */
-    color: #1e40af; /* blue-800 */
-    border: 1px solid #93c5fd; /* blue-300 */
+    background-color: #eff6ff;
+    color: #1e40af;
+    border: 1px solid #dbeafe;
     font-size: 0.75rem;
     font-weight: 600;
-    padding: 0.25rem 0.75rem;
-    border-radius: 0.5rem;
-    margin-right: 0.5rem;
-    margin-bottom: 0.5rem;
+    padding: 0.35rem 0.85rem;
+    /* Bulles un peu plus grandes */
+    border-radius: 9999px;
+    /* Pill shape complet */
 }
 
 /* --- SKILLS SECTION --- */
 .skills-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 3rem;
-    max-width: 56rem;
+    gap: 4rem;
+    /* Plus d'espace entre les colonnes */
+    max-width: 64rem;
     margin: 0 auto;
 }
 
@@ -296,17 +391,24 @@ h2 {
 
 .skill-item {
     background-color: white;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    padding: 1.25rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.03);
     display: flex;
     align-items: center;
     margin-bottom: 1rem;
+    transition: transform 0.2s;
+}
+
+.skill-item:hover {
+    transform: translateX(5px);
+    border-color: #bfdbfe;
 }
 
 .skill-icon {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 1.75rem;
+    height: 1.75rem;
     color: #2563eb;
     margin-right: 1rem;
     flex-shrink: 0;
@@ -314,10 +416,11 @@ h2 {
 
 /* --- FOOTER --- */
 footer {
-    background-color: #1f2937;
+    background-color: #111827;
+    /* gray-900 */
     color: #d1d5db;
-    padding: 3rem 1.5rem;
-    margin-top: 4rem;
+    padding: 5rem 1.5rem;
+    margin-top: 6rem;
     text-align: center;
 }
 
@@ -329,25 +432,28 @@ footer h2 {
 .footer-links {
     display: flex;
     justify-content: center;
-    gap: 2rem;
-    margin-bottom: 2rem;
+    gap: 2.5rem;
+    margin-bottom: 3rem;
     flex-wrap: wrap;
 }
 
 .footer-link {
     display: flex;
     align-items: center;
-    color: #d1d5db;
+    color: #9ca3af;
+    font-weight: 500;
+    transition: color 0.3s;
 }
 
 .footer-link:hover {
-    color: #60a5fa; /* blue-400 */
+    color: #60a5fa;
+    /* blue-400 */
 }
 
 .footer-link svg {
     width: 1.5rem;
     height: 1.5rem;
-    margin-right: 0.5rem;
+    margin-right: 0.75rem;
 }
 
 .footer-copy {
