@@ -1,4 +1,6 @@
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,41 +10,65 @@
     <!-- Configuration de la police Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+
     <!-- Styles spécifiques à cette page (pour les éléments non présents dans style.css) -->
     <style>
         /* Grilles responsives supplémentaires */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
         .grid-3 {
             display: grid;
             grid-template-columns: 1fr;
             gap: 2rem;
         }
+
         .grid-4 {
             display: grid;
             grid-template-columns: 1fr;
             gap: 1.5rem;
         }
+
         @media (min-width: 768px) {
-            .grid-3 { grid-template-columns: repeat(3, 1fr); }
-            .grid-4 { grid-template-columns: repeat(2, 1fr); }
+            .grid-2 {
+                grid-template-columns: repeat(2, 1fr);
+                align-items: start;
+            }
+
+            .grid-3 {
+                grid-template-columns: repeat(3, 1fr);
+                align-items: start;
+            }
+
+            .grid-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
+
         @media (min-width: 1024px) {
-            .grid-4 { grid-template-columns: repeat(4, 1fr); }
+            .grid-4 {
+                grid-template-columns: repeat(4, 1fr);
+            }
         }
 
         /* Style spécifique pour le Hero du projet */
         .project-hero {
             text-align: center;
-            padding: 4rem 1.5rem;
+            padding: 6rem 1.5rem;
             background-color: white;
         }
+
         .project-hero h1 {
             font-size: 2.5rem;
             color: #2563eb;
             margin-bottom: 1rem;
+            font-weight: 800;
         }
-        
+
         /* Boutons spécifiques */
         .btn-group {
             display: flex;
@@ -51,12 +77,15 @@
             flex-wrap: wrap;
             margin-top: 2rem;
         }
+
         .btn-dark {
             background-color: #374151;
         }
+
         .btn-dark:hover {
             background-color: #1f2937;
         }
+
         .btn svg {
             width: 1.25rem;
             height: 1.25rem;
@@ -65,34 +94,47 @@
             vertical-align: text-bottom;
         }
 
-        /* Pipeline Visualization */
+        /* Pipeline Visualization - Adaptatif */
         .pipeline-flow {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 1rem;
         }
+
         @media (min-width: 1024px) {
             .pipeline-flow {
                 flex-direction: row;
                 justify-content: center;
+                align-items: stretch;
+                /* Aligne les hauteurs si possible, ou start */
             }
         }
+
         .pipeline-box {
             background: white;
-            border-radius: 0.5rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            padding: 1.5rem;
-            width: 14rem;
-            height: 8rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem 2rem;
+            text-align: center;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+
+            /* ADAPTATION AU CONTENU : */
+            width: fit-content;
+            max-width: 100%;
+            min-width: 200px;
+            height: auto;
+            margin: 0 auto;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            text-align: center;
         }
+
         .pipeline-arrow {
             font-size: 2rem;
             color: #3b82f6;
+            margin: 0.25rem 0;
+            text-align: center;
         }
 
         /* Cards simplifiées pour les datasets */
@@ -101,17 +143,50 @@
             border-radius: 0.5rem;
             padding: 1.5rem;
             text-align: center;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            height: auto;
         }
-        
+
+        /* Override general card pour éviter les espaces vides */
+        .card {
+            height: auto !important;
+            min-height: 0;
+        }
+
         /* Utilitaires manquants */
-        .flex-center { display: flex; justify-content: center; align-items: center; }
-        .mb-4 { margin-bottom: 1rem; }
-        .mb-8 { margin-bottom: 2rem; }
-        .text-blue { color: #2563eb; }
-        .bg-gray-100-box { background-color: #f3f4f6; padding: 1.5rem; border-radius: 0.5rem; text-align: center; margin: 1.5rem 0; }
+        .flex-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .mb-4 {
+            margin-bottom: 1rem;
+        }
+
+        .mb-8 {
+            margin-bottom: 2rem;
+        }
+
+        .text-blue {
+            color: #2563eb;
+        }
+
+        .bg-gray-100-box {
+            background-color: #f3f4f6;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+
+        /* Espacement titres */
+        section h2 {
+            margin-top: 2rem;
+        }
     </style>
 </head>
+
 <body>
 
     <!-- =========== Header =========== -->
@@ -120,8 +195,8 @@
             <div class="logo">Jean-Baptiste BOBANT</div>
             <div class="nav-links">
                 <!-- Link back to your main portfolio index.html -->
-                <a href="index.html" style="font-weight: 500; color: #4b5563;">
-                    &larr; Back to Portfolio
+                <a href="index.html" style="font-weight: 500; color: #4b5563; display: flex; align-items: center;">
+                    <span style="margin-right: 0.5rem;">&larr;</span> Back to Portfolio
                 </a>
             </div>
         </nav>
@@ -133,20 +208,26 @@
         <section id="hero" class="project-hero">
             <div class="container">
                 <h1>Cell Sentences & HVG Evaluation</h1>
-                <p style="font-size: 1.25rem; color: #4b5563;">Applying Language Models to Single-Cell Genomics</p>
-                
+                <p style="font-size: 1.25rem; color: #4b5563; max-width: 48rem; margin: 0 auto;">
+                    Applying Language Models to Single-Cell Genomics
+                </p>
+
                 <div class="btn-group">
-                    <a href="https://github.com/jbbobant/HVG-for-cell-sentence-representation" target="_blank" rel="noopener noreferrer" class="btn">
+                    <a href="https://github.com/jbbobant/HVG-for-cell-sentence-representation" target="_blank"
+                        rel="noopener noreferrer" class="btn">
                         <!-- GitHub Icon -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.085 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                            <path
+                                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.085 8.199-11.386 0-6.627-5.373-12-12-12z" />
                         </svg>
                         View GitHub Repo
                     </a>
                     <a href="Research_Report.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-dark">
                         <!-- Document Icon -->
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
                         </svg>
                         Read Research Report
                     </a>
@@ -157,24 +238,34 @@
         <!-- =========== The Core Objective =========== -->
         <section id="objective" class="container">
             <h2>The Research Objective</h2>
-            <div class="card" style="flex-direction: row; flex-wrap: wrap; overflow: visible;">
-                <div style="padding: 2rem; flex: 1; min-width: 300px;">
-                    <h3 class="text-blue mb-4">HVG vs. Full Genome</h3>
-                    <p class="mb-4">
-                        In single-cell analysis, <strong>Highly Variable Gene (HVG)</strong> selection is a standard step to reduce noise by focusing on the ~2000 genes with the highest variance.
+            <div class="card"
+                style="flex-direction: row; flex-wrap: wrap; border: none; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                <div style="padding: 3rem; flex: 1; min-width: 300px;">
+                    <h3 class="text-blue mb-4 font-bold text-xl">HVG vs. Full Genome</h3>
+                    <p class="mb-4" style="font-size: 1.1rem; line-height: 1.8;">
+                        In single-cell analysis, <strong>Highly Variable Gene (HVG)</strong> selection is a standard
+                        step to reduce noise by focusing on the ~2000 genes with the highest variance.
                     </p>
-                    <p class="mb-4">
-                        This project's core question was to evaluate the trade-off of this data reduction. We compared the performance of models trained on "cell sentences" built from <strong>only the top 2000 HVGs</strong> against models trained on sentences built from the <strong>full genome</strong>.
+                    <p class="mb-4" style="font-size: 1.1rem; line-height: 1.8;">
+                        This project's core question was to evaluate the trade-off of this data reduction. We compared
+                        the performance of models trained on "cell sentences" built from <strong>only the top 2000
+                            HVGs</strong> against models trained on sentences built from the <strong>full
+                            genome</strong>.
                     </p>
-                    <p class="font-bold">
-                        The hypothesis: The HVG-only sentences would perform just as well on classification tasks, proving that the most critical biological signal is contained within this subset.
+                    <p class="font-bold" style="font-size: 1.1rem; color: #111827;">
+                        The hypothesis: The HVG-only sentences would perform just as well on classification tasks,
+                        proving that the most critical biological signal is contained within this subset.
                     </p>
                 </div>
                 <!-- Visual Placeholder -->
-                <div style="flex: 1; min-width: 300px; padding: 2rem; display: flex; flex-direction: column; justify-content: center;">
+                <div
+                    style="flex: 1; min-width: 300px; padding: 2rem; display: flex; flex-direction: column; justify-content: center;">
                     <div class="bg-gray-100-box" style="margin: 0;">
-                        <img src="HVG_sentence.png" onerror="this.src='https://placehold.co/600x400/e5e7eb/a3a3a3?text=HVG+Process'" alt="HVG vs Full Genome" style="border-radius: 0.5rem; width: 100%;">
-                        <p style="font-size: 0.875rem; color: #6b7280; margin-top: 0.5rem;">HVG and full genome cell sentence construction process.</p>
+                        <img src="HVG_sentence.png"
+                            onerror="this.src='https://placehold.co/600x400/e5e7eb/a3a3a3?text=HVG+Process'"
+                            alt="HVG vs Full Genome" style="border-radius: 0.5rem; width: 100%;">
+                        <p style="font-size: 0.875rem; color: #6b7280; margin-top: 0.5rem;">HVG and full genome cell
+                            sentence construction process.</p>
                     </div>
                 </div>
             </div>
@@ -182,9 +273,11 @@
 
         <!-- =========== Benchmark Datasets =========== -->
         <section id="datasets" class="container">
-            <h2>Benchmark Datasets</h2>
-            <p class="text-center mb-8" style="max-width: 48rem; margin: 0 auto 3rem auto; color: #4b5563;">
-                The models were trained and evaluated on four benchmark human single-cell RNA-seq datasets (from CellFM) to ensure robust and generalizable results across diverse tissues.
+            <h2 style="margin-top: 2rem;">Benchmark Datasets</h2>
+            <p class="text-center mb-8"
+                style="max-width: 48rem; margin: 0 auto 3rem auto; color: #4b5563; font-size: 1.1rem;">
+                The models were trained and evaluated on four benchmark human single-cell RNA-seq datasets (from CellFM)
+                to ensure robust and generalizable results across diverse tissues.
             </p>
             <div class="grid-4">
                 <!-- Pancreas -->
@@ -220,7 +313,7 @@
 
         <!-- =========== MLOps Pipeline =========== -->
         <section id="pipeline" class="container">
-            <h2>Data & MLOps Pipeline</h2>
+            <h2 style="margin-top: 4rem;">Data & MLOps Pipeline</h2>
 
             <!-- Pipeline Flow -->
             <div style="max-width: 64rem; margin: 0 auto;">
@@ -232,14 +325,14 @@
                         <p style="font-size: 0.875rem; color: #4b5563;">`.h5ad` Ingestion</p>
                     </div>
                     <!-- Arrow -->
-                    <div class="pipeline-arrow">&darr;</div> <!-- Using down arrow for simplicity in mobile/desktop logic or handle via CSS, sticking to vertical flow or simple flex logic -->
-                    
+                    <div class="pipeline-arrow">&darr;</div>
+
                     <!-- Item 2 -->
                     <div class="pipeline-box">
                         <h4 class="font-bold text-lg">Quality Control</h4>
                         <p style="font-size: 0.875rem; color: #4b5563;">Filtering & Norm (Base 10)</p>
                     </div>
-                    
+
                     <!-- Arrow -->
                     <div class="pipeline-arrow">&darr;</div>
 
@@ -265,7 +358,7 @@
                 </div>
 
                 <div class="flex-center">
-                    <div class="pipeline-box" style="background-color: #2563eb; color: white; width: auto; padding: 1.5rem 3rem;">
+                    <div class="pipeline-box" style="background-color: #2563eb; color: white; border: none;">
                         <h4 class="font-bold text-xl">Cell2Sentence LLM Embedding</h4>
                         <p style="font-size: 0.875rem; opacity: 0.9;">Pythia-410M</p>
                     </div>
@@ -273,11 +366,12 @@
 
                 <!-- Step 2: Branching Tasks -->
                 <div class="flex-center" style="margin-top: 2rem;">
-                   <div class="pipeline-arrow">&darr;</div>
+                    <div class="pipeline-arrow">&darr;</div>
                 </div>
 
-                <h3 style="text-align: center; font-size: 1.5rem; font-weight: 700; margin-bottom: 2rem;">Downstream Tasks</h3>
-                
+                <h3 style="text-align: center; font-size: 1.5rem; font-weight: 700; margin-bottom: 2rem;">Downstream
+                    Tasks</h3>
+
                 <div class="grid-2">
                     <!-- Task A -->
                     <div class="card" style="padding: 2rem;">
@@ -305,34 +399,46 @@
 
         <!-- =========== Results =========== -->
         <section id="results" class="container">
-            <h2>Key Results</h2>
+            <h2 style="margin-top: 4rem;">Key Results</h2>
             <div class="grid-2">
                 <!-- Result 1: Reconstruction -->
-                <div class="card" style="padding: 2rem;">
+                <div class="card" style="padding: 2.5rem;">
                     <h3 class="text-blue mb-4 font-bold text-xl">Task 1: Gene Expression Reconstruction</h3>
                     <p class="mb-4">
-                        This task tested the "reversibility" of the cell sentences. A simple linear regression model was trained to predict the original gene expression profile using only the cell embeddings.
+                        This task tested the "reversibility" of the cell sentences. A simple linear regression model was
+                        trained to predict the original gene expression profile using only the cell embeddings.
                     </p>
                     <div class="bg-gray-100-box">
-                        <img src="Reco.png" onerror="this.src='https://placehold.co/600x400/e5e7eb/a3a3a3?text=Scatter+Plot'" alt="Reconstruction Scatter Plot" style="border-radius: 0.5rem; width: 100%;">
-                        <p style="font-size: 0.875rem; color: #6b7280; margin-top: 0.5rem;">Example scatter plot for Skin showing strong correlation between true and reconstructed expression.</p>
+                        <img src="Reco.png"
+                            onerror="this.src='https://placehold.co/600x400/e5e7eb/a3a3a3?text=Scatter+Plot'"
+                            alt="Reconstruction Scatter Plot" style="border-radius: 0.5rem; width: 100%;">
+                        <p style="font-size: 0.875rem; color: #6b7280; margin-top: 0.5rem;">Example scatter plot for
+                            Skin showing strong correlation between true and reconstructed expression.</p>
                     </div>
                     <p>
-                        <strong>Result:</strong> The model achieved an average <strong>R<sup>2</sup> of 0.85</strong> and <strong>Pearson Correlation of 0.92</strong>, confirming that the rank-based sentence embedding retains a high degree of quantitative expression information.
+                        <strong>Result:</strong> The model achieved an average <strong>R<sup>2</sup> of 0.85</strong>
+                        and <strong>Pearson Correlation of 0.92</strong>, confirming that the rank-based sentence
+                        embedding retains a high degree of quantitative expression information.
                     </p>
                 </div>
                 <!-- Result 2: Annotation -->
-                <div class="card" style="padding: 2rem;">
+                <div class="card" style="padding: 2.5rem;">
                     <h3 class="text-blue mb-4 font-bold text-xl">Task 2: Cell-Type Annotation</h3>
                     <p class="mb-4">
-                        This task trained a simple MLP classifier on the cell embeddings to predict the cell type (e.g., fibroblast, T cell). This was the primary test for the HVG vs. Full Genome comparison.
+                        This task trained a simple MLP classifier on the cell embeddings to predict the cell type (e.g.,
+                        fibroblast, T cell). This was the primary test for the HVG vs. Full Genome comparison.
                     </p>
                     <div class="bg-gray-100-box">
-                        <img src="MF1.png" onerror="this.src='https://placehold.co/600x400/e5e7eb/a3a3a3?text=Confusion+Matrix'" alt="Annotation Confusion Matrix" style="border-radius: 0.5rem; width: 100%;">
-                        <p style="font-size: 0.875rem; color: #6b7280; margin-top: 0.5rem;">Macro-F1 score for inter-dataset cell-type annotation.</p>
+                        <img src="MF1.png"
+                            onerror="this.src='https://placehold.co/600x400/e5e7eb/a3a3a3?text=Confusion+Matrix'"
+                            alt="Annotation Confusion Matrix" style="border-radius: 0.5rem; width: 100%;">
+                        <p style="font-size: 0.875rem; color: #6b7280; margin-top: 0.5rem;">Macro-F1 score for
+                            inter-dataset cell-type annotation.</p>
                     </div>
                     <p>
-                        <strong>Result:</strong> The models achieved state-of-the-art performance (e.g., <strong>Macro-F1 of ~0.89</strong>). Most importantly, the <strong>HVG-only model performed almost identically to the full-genome model</strong>, validating our hypothesis.
+                        <strong>Result:</strong> The models achieved state-of-the-art performance (e.g.,
+                        <strong>Macro-F1 of ~0.89</strong>). Most importantly, the <strong>HVG-only model performed
+                            almost identically to the full-genome model</strong>, validating our hypothesis.
                     </p>
                 </div>
             </div>
@@ -340,27 +446,33 @@
 
         <!-- =========== Key Learnings =========== -->
         <section id="learnings" class="container">
-            <h2>Key Takeaways & Learnings</h2>
-            <div class="card" style="padding: 2rem; max-width: 56rem; margin: 0 auto;">
-                <p class="mb-8" style="font-size: 1.1rem;">
-                    This project was a deep dive into the intersection of MLOps and computational biology. Beyond the research findings, the key engineering takeaway was refactoring a complex, multi-notebook research project into a clean, testable, and reproducible codebase.
+            <h2 style="margin-top: 4rem;">Key Takeaways & Learnings</h2>
+            <div class="card" style="padding: 3rem; max-width: 64rem; margin: 0 auto;">
+                <p class="mb-8" style="font-size: 1.15rem; line-height: 1.8;">
+                    This project was a deep dive into the intersection of MLOps and computational biology. Beyond the
+                    research findings, the key engineering takeaway was refactoring a complex, multi-notebook research
+                    project into a clean, testable, and reproducible codebase.
                 </p>
                 <ul class="skills-list">
                     <li class="skill-item" style="display: block;">
                         <strong style="color: #10b981;">ML Engineering:</strong>
-                        Successfully modularized the entire pipeline, separating data preprocessing, model definition, and training loops into distinct, reusable classes.
+                        Successfully modularized the entire pipeline, separating data preprocessing, model definition,
+                        and training loops into distinct, reusable classes.
                     </li>
                     <li class="skill-item" style="display: block;">
                         <strong style="color: #10b981;">Bioinformatics Pipeline:</strong>
-                        Gained hands-on experience with `scanpy` and `anndata` for handling scRNA-seq data, including QC filtering, normalization, and HVG selection.
+                        Gained hands-on experience with `scanpy` and `anndata` for handling scRNA-seq data, including QC
+                        filtering, normalization, and HVG selection.
                     </li>
                     <li class="skill-item" style="display: block;">
                         <strong style="color: #10b981;">Reproducible Science:</strong>
-                        Implemented a config-driven workflow (`yaml`) and global seeding (`seed_everything`) to ensure all results are 100% reproducible.
+                        Implemented a config-driven workflow (`yaml`) and global seeding (`seed_everything`) to ensure
+                        all results are 100% reproducible.
                     </li>
                     <li class="skill-item" style="display: block;">
                         <strong style="color: #10b981;">Advanced PyTorch:</strong>
-                        Built custom `Trainer` classes for both classification and regression, implementing early stopping and appropriate metric tracking (Macro-F1, R<sup>2</sup>) for each task.
+                        Built custom `Trainer` classes for both classification and regression, implementing early
+                        stopping and appropriate metric tracking (Macro-F1, R<sup>2</sup>) for each task.
                     </li>
                 </ul>
             </div>
@@ -368,13 +480,14 @@
 
         <!-- =========== Further Reading =========== -->
         <section id="reading" class="container">
-            <h2>Relevant Research</h2>
+            <h2 style="margin-top: 4rem;">Relevant Research</h2>
             <div class="grid-3">
                 <!-- Paper 1 -->
                 <div class="card" style="padding: 1.5rem;">
                     <h4 class="font-bold text-lg mb-2">Cell2Sentence</h4>
                     <p class="mb-4" style="color: #4b5563;">The foundational paper for this project's methodology.</p>
-                    <a href="https://doi.org/10.1101/2023.09.11.557287" target="_blank" rel="noopener noreferrer" class="text-blue font-bold">
+                    <a href="https://www.biorxiv.org/content/10.1101/2023.09.11.557287v4" target="_blank"
+                        rel="noopener noreferrer" class="text-blue font-bold">
                         Read on bioRxiv &rarr;
                     </a>
                 </div>
@@ -382,15 +495,18 @@
                 <div class="card" style="padding: 1.5rem;">
                     <h4 class="font-bold text-lg mb-2">CellFM</h4>
                     <p class="mb-4" style="color: #4b5563;">The foundation model and benchmark used for comparison.</p>
-                    <a href="https://doi.org/10.1038/s41467-024-46733-2" target="_blank" rel="noopener noreferrer" class="text-blue font-bold">
+                    <a href="https://www.nature.com/articles/s41467-025-59926-5" target="_blank"
+                        rel="noopener noreferrer" class="text-blue font-bold">
                         Read on Nature &rarr;
                     </a>
                 </div>
                 <!-- Paper 3 -->
                 <div class="card" style="padding: 1.5rem;">
                     <h4 class="font-bold text-lg mb-2">scEval Benchmark</h4>
-                    <p class="mb-4" style="color: #4b5563;">The framework ensuring reproducible and comparable results.</p>
-                    <a href="https://doi.org/10.1101/2023.09.08.555192" target="_blank" rel="noopener noreferrer" class="text-blue font-bold">
+                    <p class="mb-4" style="color: #4b5563;">The framework ensuring reproducible and comparable results.
+                    </p>
+                    <a href="https://www.biorxiv.org/content/10.1101/2023.09.08.555192v5.full" target="_blank"
+                        rel="noopener noreferrer" class="text-blue font-bold">
                         Read on bioRxiv &rarr;
                     </a>
                 </div>
@@ -403,12 +519,19 @@
     <footer id="contact">
         <h2>Get in Touch</h2>
         <div class="footer-links">
-            <a href="https://www.linkedin.com/in/jean-baptiste-bobant/" target="_blank" rel="noopener noreferrer" class="footer-link">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" /></svg>
+            <a href="https://www.linkedin.com/in/jean-baptiste-bobant/" target="_blank" rel="noopener noreferrer"
+                class="footer-link">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                </svg>
                 LinkedIn
             </a>
             <a href="https://github.com/jbbobant" target="_blank" rel="noopener noreferrer" class="footer-link">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.109-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" /></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                </svg>
                 GitHub
             </a>
         </div>
@@ -416,4 +539,5 @@
     </footer>
 
 </body>
+
 </html>

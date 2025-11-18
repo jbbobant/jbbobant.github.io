@@ -1,4 +1,6 @@
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,38 +10,51 @@
     <!-- Configuration de la police Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+
     <!-- Styles spécifiques à cette page -->
     <style>
-        /* Grilles responsives */
+        /* Grilles responsives spécifiques */
         .grid-2 {
             display: grid;
             grid-template-columns: 1fr;
             gap: 2rem;
         }
+
         .grid-3 {
             display: grid;
             grid-template-columns: 1fr;
             gap: 2rem;
         }
+
         @media (min-width: 768px) {
-            .grid-2 { grid-template-columns: repeat(2, 1fr); }
-            .grid-3 { grid-template-columns: repeat(3, 1fr); }
+
+            /* align-items: start permet aux cartes de ne pas s'étirer verticalement inutilement */
+            .grid-2 {
+                grid-template-columns: repeat(2, 1fr);
+                align-items: start;
+            }
+
+            .grid-3 {
+                grid-template-columns: repeat(3, 1fr);
+                align-items: start;
+            }
         }
 
         /* Hero spécifique */
         .project-hero {
             text-align: center;
-            padding: 4rem 1.5rem;
+            padding: 6rem 1.5rem;
             background-color: white;
         }
+
         .project-hero h1 {
             font-size: 2.5rem;
             color: #2563eb;
             margin-bottom: 1rem;
+            font-weight: 800;
         }
-        
+
         /* Boutons */
         .btn-group {
             display: flex;
@@ -48,11 +63,23 @@
             flex-wrap: wrap;
             margin-top: 2rem;
         }
-        .btn-dark { background-color: #374151; }
-        .btn-dark:hover { background-color: #1f2937; }
-        .btn-green { background-color: #16a34a; } /* Pour la carte */
-        .btn-green:hover { background-color: #15803d; }
-        
+
+        .btn-dark {
+            background-color: #374151;
+        }
+
+        .btn-dark:hover {
+            background-color: #1f2937;
+        }
+
+        .btn-green {
+            background-color: #16a34a;
+        }
+
+        .btn-green:hover {
+            background-color: #15803d;
+        }
+
         .btn svg {
             width: 1.25rem;
             height: 1.25rem;
@@ -61,15 +88,16 @@
             vertical-align: text-bottom;
         }
 
-        /* Pipeline Styles */
+        /* Pipeline Visualization */
         .pipeline-container {
-            max-width: 56rem;
+            max-width: 64rem;
             margin: 0 auto;
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 1.5rem;
         }
+
         .pipeline-row {
             display: flex;
             flex-wrap: wrap;
@@ -77,29 +105,82 @@
             gap: 2rem;
             width: 100%;
         }
+
         .pipeline-box {
             background: white;
-            border-radius: 0.5rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            padding: 1.5rem;
-            min-width: 200px;
+            border-radius: 0.75rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem 2rem;
+            /* Padding confortable */
             text-align: center;
-            flex: 1;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            /* ADAPTATION AU CONTENU : */
+            width: fit-content;
+            max-width: 100%;
+            height: auto;
+            margin: 0 auto;
+            /* Centrage */
         }
+
         .pipeline-arrow {
             font-size: 2rem;
             color: #3b82f6;
             text-align: center;
             width: 100%;
+            margin: 0.25rem 0;
         }
 
-        /* Utilitaires */
-        .text-blue { color: #2563eb; }
-        .font-bold { font-weight: 700; }
-        .mb-4 { margin-bottom: 1rem; }
-        .bg-gray-100-box { background-color: #f3f4f6; padding: 1.5rem; border-radius: 0.5rem; text-align: center; margin: 1.5rem 0; }
+        /* Override pour que les cartes s'adaptent au contenu et ne soient pas trop grandes */
+        .card {
+            height: auto !important;
+            /* Force la hauteur auto */
+            min-height: 0;
+        }
+
+        /* Utilitaires de texte */
+        .text-blue {
+            color: #2563eb;
+        }
+
+        .font-bold {
+            font-weight: 700;
+        }
+
+        .mb-4 {
+            margin-bottom: 1rem;
+        }
+
+        /* Boîte grise pour images/graphiques */
+        .bg-gray-100-box {
+            background-color: #f3f4f6;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+
+        /* Ajustement des listes de résultats */
+        ul.dashed-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        ul.dashed-list li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        ul.dashed-list li::before {
+            content: "-";
+            position: absolute;
+            left: 0;
+            color: #2563eb;
+            font-weight: bold;
+        }
     </style>
 </head>
+
 <body>
 
     <!-- =========== Header =========== -->
@@ -107,8 +188,8 @@
         <nav class="container">
             <div class="logo">Jean-Baptiste BOBANT</div>
             <div class="nav-links">
-                <a href="index.html" style="font-weight: 500; color: #4b5563;">
-                    &larr; Back to Portfolio
+                <a href="index.html" style="font-weight: 500; color: #4b5563; display: flex; align-items: center;">
+                    <span style="margin-right: 0.5rem;">&larr;</span> Back to Portfolio
                 </a>
             </div>
         </nav>
@@ -120,19 +201,35 @@
         <section id="hero" class="project-hero">
             <div class="container">
                 <h1>Wine Vintage Quality Forecasting</h1>
-                <p style="font-size: 1.25rem; color: #4b5563;">Predicting Wine Quality from Weather and Grape Data using Deep Learning</p>
-                
+                <p style="font-size: 1.25rem; color: #4b5563; max-width: 48rem; margin: 0 auto;">
+                    Predicting Wine Quality from Weather and Grape Data using Deep Learning
+                </p>
+
                 <div class="btn-group">
-                    <a href="https://github.com/jbbobant/wine-quality-forecasting" target="_blank" rel="noopener noreferrer" class="btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.085 8.199-11.386 0-6.627-5.373-12-12-12z" /></svg>
+                    <a href="https://github.com/jbbobant/wine-quality-forecasting" target="_blank"
+                        rel="noopener noreferrer" class="btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.085 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                        </svg>
                         View GitHub Repo
                     </a>
                     <a href="Deep_Learning_Project.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-dark">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                        </svg>
                         Read Research Report
                     </a>
                     <a href="wine_map.html" target="_blank" rel="noopener noreferrer" class="btn btn-green">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" /></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                        </svg>
                         View Interactive Map
                     </a>
                 </div>
@@ -141,28 +238,35 @@
 
         <!-- =========== The Core Objective =========== -->
         <section id="objective" class="container">
-            <h2>The Research Objective</h2>
-            <div class="card" style="flex-direction: row; flex-wrap: wrap;">
-                <div style="padding: 2rem; flex: 1; min-width: 300px;">
+            <h2 style="margin-top: 4rem;">Research Objective</h2>
+            <div class="card"
+                style="flex-direction: row; flex-wrap: wrap; border: none; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                <div style="padding: 3rem; flex: 1; min-width: 300px;">
                     <h3 class="text-blue mb-4 font-bold text-xl">Forecasting Quality Without Tasting</h3>
-                    <p class="mb-4">
-                        Even for wine enthusiasts, determining the quality of a vintage without tasting is a significant challenge. This project was motivated by a desire to leverage data to solve this problem.
+                    <p class="mb-4" style="font-size: 1.1rem; line-height: 1.8;">
+                        Even for wine enthusiasts, determining the quality of a vintage without tasting is a significant
+                        challenge. This project was motivated by a desire to leverage data to solve this problem.
                     </p>
-                    <p class="mb-4">
-                        The objective was to combine <strong>wine-specific data</strong> (grape variety, region, appellation) with <strong>geospatial and temporal data</strong> (meteorological conditions, soil composition) to predict its consumer-based quality rating.
+                    <p class="mb-4" style="font-size: 1.1rem; line-height: 1.8;">
+                        The objective was to combine <strong>wine-specific data</strong> (grape variety, region,
+                        appellation) with <strong>geospatial and temporal data</strong> (meteorological conditions, soil
+                        composition) to predict its consumer-based quality rating.
                     </p>
-                    <p class="font-bold">
-                        This involved a complex data engineering pipeline to build a unique tabular dataset, followed by a comparative analysis of classical, MLP, and Transformer-based models.
+                    <p class="font-bold" style="font-size: 1.1rem; color: #111827;">
+                        This involved a complex data engineering pipeline to build a unique tabular dataset, followed by
+                        a comparative analysis of classical, MLP, and Transformer-based models.
                     </p>
                 </div>
             </div>
         </section>
 
-        <!-- =========== Benchmark Datasets =========== -->
+        <!-- =========== Data Sources =========== -->
         <section id="datasets" class="container">
-            <h2>Data Sources</h2>
-            <p class="text-center mb-8" style="max-width: 48rem; margin: 0 auto 3rem auto; color: #4b5563;">
-                The project's foundation is a novel dataset created by fusing three distinct data sources through a custom ETL pipeline.
+            <h2 style="margin-top: 4rem;">Data Sources</h2>
+            <p class="text-center mb-8"
+                style="max-width: 48rem; margin: 0 auto 3rem auto; color: #4b5563; font-size: 1.1rem;">
+                The project's foundation is a novel dataset created by fusing three distinct data sources through a
+                custom ETL pipeline.
             </p>
             <div class="grid-3">
                 <!-- Vivino -->
@@ -173,7 +277,8 @@
                 <!-- Weather -->
                 <div class="pipeline-box">
                     <h4 class="text-blue mb-2 font-bold text-lg">Meteorological Data</h4>
-                    <p>Historical weather data (e.g., precipitation, temperature) sourced from APIs for each wine region.</p>
+                    <p>Historical weather data (e.g., precipitation, temperature) sourced from APIs for each wine
+                        region.</p>
                 </div>
                 <!-- Soil -->
                 <div class="pipeline-box">
@@ -185,9 +290,9 @@
 
         <!-- =========== Data & MLOps Pipeline =========== -->
         <section id="pipeline" class="container">
-            <h2>Data & MLOps Pipeline</h2>
+            <h2 style="margin-top: 4rem;">Data & MLOps Pipeline</h2>
             <div class="pipeline-container">
-                
+
                 <!-- Step 1 -->
                 <div class="pipeline-row">
                     <div class="pipeline-box">
@@ -203,41 +308,45 @@
                 <div class="pipeline-arrow">&darr;</div>
 
                 <!-- Step 2 -->
-                <div class="pipeline-box" style="width: 100%; max-width: 400px;">
+                <div class="pipeline-box">
                     <h4 class="font-bold text-lg">2. Preprocessing & Merging</h4>
-                    <p style="font-size: 0.875rem; color: #4b5563;">Join wine, weather & soil data</p>
+                    <p style="font-size: 0.875rem; color: #4b5563;">Join wine, weather & soil data based on location and
+                        year.</p>
                 </div>
 
                 <div class="pipeline-arrow">&darr;</div>
 
                 <!-- Step 3 -->
-                <div class="pipeline-box" style="width: 100%; max-width: 400px;">
+                <div class="pipeline-box">
                     <h4 class="font-bold text-lg">3. Feature Engineering</h4>
-                    <p style="font-size: 0.875rem; color: #4b5563;">Calculate GDD, water stress, etc.</p>
+                    <p style="font-size: 0.875rem; color: #4b5563;">Calculate GDD (Growing Degree Days), water stress
+                        indices, and vintage quality scores.</p>
                 </div>
 
                 <div class="pipeline-arrow">&darr;</div>
 
                 <!-- Step 4 -->
-                <div class="pipeline-box" style="background-color: #2563eb; color: white; width: 100%; max-width: 400px;">
+                <div class="pipeline-box" style="background-color: #2563eb; color: white; border: none;">
                     <h4 class="font-bold text-lg">4. Model-Ready Dataset</h4>
-                    <p style="font-size: 0.875rem; opacity: 0.9;">Tabular Data (Features & Target)</p>
+                    <p style="font-size: 0.875rem; opacity: 0.9;">Final Tabular Data (Features & Target)</p>
                 </div>
 
                 <div class="pipeline-arrow">&darr;</div>
 
                 <!-- Models -->
-                <h3 style="font-size: 1.5rem; font-weight: 700; margin-top: 1rem;">Downstream Model Comparison</h3>
+                <h3
+                    style="font-size: 1.5rem; font-weight: 700; margin-top: 1.5rem; margin-bottom: 1rem; color: #1f2937;">
+                    Downstream Model Comparison</h3>
                 <div class="grid-3" style="width: 100%;">
-                    <div class="card" style="padding: 1.5rem; text-align: center;">
+                    <div class="card" style="padding: 1.5rem; text-align: center; border: 1px solid #e5e7eb;">
                         <h4 class="text-blue font-bold text-lg mb-2">Baseline Models</h4>
                         <p>XGBoost, Random Forest</p>
                     </div>
-                    <div class="card" style="padding: 1.5rem; text-align: center;">
+                    <div class="card" style="padding: 1.5rem; text-align: center; border: 1px solid #e5e7eb;">
                         <h4 class="text-blue font-bold text-lg mb-2">MLP</h4>
                         <p>Multi-Layer Perceptron</p>
                     </div>
-                    <div class="card" style="padding: 1.5rem; text-align: center;">
+                    <div class="card" style="padding: 1.5rem; text-align: center; border: 1px solid #e5e7eb;">
                         <h4 class="text-blue font-bold text-lg mb-2">Transformers</h4>
                         <p>FT-Transformer, TabNet</p>
                     </div>
@@ -248,31 +357,42 @@
 
         <!-- =========== Results =========== -->
         <section id="results" class="container">
-            <h2>Key Results</h2>
+            <h2 style="margin-top: 4rem;">Key Results</h2>
             <div class="grid-2">
                 <!-- Result 1 -->
-                <div class="card" style="padding: 2rem;">
+                <div class="card" style="padding: 2.5rem;">
                     <h3 class="text-blue mb-4 font-bold text-xl">Baseline Performance</h3>
                     <p class="mb-4">
-                        Classical models like XGBoost and Random Forest served as strong baselines. XGBoost, in particular, achieved a robust Macro-F1 score of <strong>0.81</strong>, setting a high bar for the deep learning models.
+                        Classical models like XGBoost and Random Forest served as strong baselines. XGBoost, in
+                        particular, achieved a robust Macro-F1 score of <strong>0.81</strong>, setting a high bar for
+                        the deep learning models.
                     </p>
                     <div class="bg-gray-100-box">
-                        <img src="baseline.png" onerror="this.src='https://placehold.co/600x400/e5e7eb/a3a3a3?text=Baseline+Graph'" alt="Baseline Model Performance" style="border-radius: 0.5rem; width: 100%;">
-                        <p style="font-size: 0.875rem; color: #6b7280; margin-top: 0.5rem;">Comparison of baseline models performance metrics.</p>
+                        <img src="baseline.png"
+                            onerror="this.src='https://placehold.co/600x400/e5e7eb/a3a3a3?text=Baseline+Graph'"
+                            alt="Baseline Model Performance" style="border-radius: 0.5rem; width: 100%;">
+                        <p style="font-size: 0.875rem; color: #6b7280; margin-top: 0.5rem;">Comparison of baseline
+                            models performance metrics.</p>
                     </div>
                 </div>
                 <!-- Result 2 -->
-                <div class="card" style="padding: 2rem;">
+                <div class="card" style="padding: 2.5rem;">
                     <h3 class="text-blue mb-4 font-bold text-xl">MLP Outperforms Transformers</h3>
                     <p class="mb-4">
-                        While SOTA models like FT-Transformer and TabNet were tested, the best-performing model was a well-tuned <strong>Multi-Layer Perceptron (MLP)</strong>.
+                        While SOTA models like FT-Transformer and TabNet were tested, the best-performing model was a
+                        well-tuned <strong>Multi-Layer Perceptron (MLP)</strong>.
                     </p>
                     <div class="bg-gray-100-box">
-                        <img src="mlp.png" onerror="this.src='https://placehold.co/600x400/e5e7eb/a3a3a3?text=MLP+Graph'" alt="MLP vs Transformer Accuracy" style="border-radius: 0.5rem; width: 100%;">
-                        <p style="font-size: 0.875rem; color: #6b7280; margin-top: 0.5rem;">Results for the MLP model.</p>
+                        <img src="mlp.png"
+                            onerror="this.src='https://placehold.co/600x400/e5e7eb/a3a3a3?text=MLP+Graph'"
+                            alt="MLP vs Transformer Accuracy" style="border-radius: 0.5rem; width: 100%;">
+                        <p style="font-size: 0.875rem; color: #6b7280; margin-top: 0.5rem;">Results for the MLP model.
+                        </p>
                     </div>
                     <p>
-                        <strong>Result:</strong> The MLP achieved the highest Macro-F1 score, demonstrating that for this specific tabular dataset, a simpler deep learning architecture (optimized with Optuna) was more effective than more complex Transformer-based models.
+                        <strong>Result:</strong> The MLP achieved the highest Macro-F1 score, demonstrating that for
+                        this specific tabular dataset, a simpler deep learning architecture (optimized with Optuna) was
+                        more effective than more complex Transformer-based models.
                     </p>
                 </div>
             </div>
@@ -280,27 +400,33 @@
 
         <!-- =========== Key Learnings =========== -->
         <section id="learnings" class="container">
-            <h2>Key Takeaways & Learnings</h2>
-            <div class="card" style="padding: 2rem; max-width: 56rem; margin: 0 auto;">
-                <p class="mb-8" style="font-size: 1.1rem;">
-                    This project was an end-to-end exercise in applied data science and MLOps. The primary challenge was not just model training, but the complex data engineering required to build the dataset from scratch.
+            <h2 style="margin-top: 4rem;">Key Takeaways & Learnings</h2>
+            <div class="card" style="padding: 3rem; max-width: 64rem; margin: 0 auto;">
+                <p class="mb-8" style="font-size: 1.15rem; line-height: 1.8;">
+                    This project was an end-to-end exercise in applied data science and MLOps. The primary challenge was
+                    not just model training, but the complex data engineering required to build the dataset from
+                    scratch.
                 </p>
-                <ul class="skills-list">
-                    <li class="skill-item" style="display: block;">
+                <ul class="dashed-list" style="font-size: 1.05rem; color: #374151;">
+                    <li>
                         <strong style="color: #10b981;">MLOps Engineering:</strong>
-                        Refactored a complex data pipeline from notebooks into a modular, config-driven project (`pyproject.toml`, `src/` layout).
+                        Refactored a complex data pipeline from notebooks into a modular, config-driven project
+                        (<code>pyproject.toml</code>, <code>src/</code> layout).
                     </li>
-                    <li class="skill-item" style="display: block;">
+                    <li>
                         <strong style="color: #10b981;">Heterogeneous Data ETL:</strong>
-                        Built a full data pipeline, including web scraping (`Vivino`), API integration (`Meteo`), and geospatial data merging (AOC coordinates & `SoilGrids`).
+                        Built a full data pipeline, including web scraping (<code>Vivino</code>), API integration
+                        (<code>Meteo</code>), and geospatial data merging (AOC coordinates & <code>SoilGrids</code>).
                     </li>
-                    <li class="skill-item" style="display: block;">
+                    <li>
                         <strong style="color: #10b981;">Tabular Deep Learning:</strong>
-                        Compared SOTA tabular models (MLP, TabNet, FT-Transformer) against classical methods (XGBoost), finding MLP was most effective.
+                        Compared SOTA tabular models (MLP, TabNet, FT-Transformer) against classical methods (XGBoost),
+                        finding MLP was most effective.
                     </li>
-                    <li class="skill-item" style="display: block;">
+                    <li>
                         <strong style="color: #10b981;">Hyperparameter Tuning:</strong>
-                        Implemented `Optuna` for automated hyperparameter search to optimize the MLP architecture and training parameters.
+                        Implemented <code>Optuna</code> for automated hyperparameter search to optimize the MLP
+                        architecture and training parameters.
                     </li>
                 </ul>
             </div>
@@ -308,22 +434,25 @@
 
         <!-- =========== Further Reading =========== -->
         <section id="reading" class="container">
-            <h2>Relevant Research</h2>
+            <h2 style="margin-top: 4rem;">Relevant Research</h2>
             <div class="grid-3">
-                <div class="card" style="padding: 1.5rem;">
+                <div class="card" style="padding: 2rem; text-align: left;">
                     <h4 class="font-bold text-lg mb-2">TabNet</h4>
                     <p class="mb-4" style="color: #4b5563;">Attentive Interpretable Tabular Learning.</p>
-                    <a href="https://arxiv.org/abs/1908.07442" target="_blank" rel="noopener noreferrer" class="text-blue font-bold">Read on arXiv &rarr;</a>
+                    <a href="https://arxiv.org/abs/1908.07442" target="_blank" rel="noopener noreferrer"
+                        style="color: #2563eb; font-weight: 600;">Read on arXiv &rarr;</a>
                 </div>
-                <div class="card" style="padding: 1.5rem;">
+                <div class="card" style="padding: 2rem; text-align: left;">
                     <h4 class="font-bold text-lg mb-2">FT-Transformer</h4>
                     <p class="mb-4" style="color: #4b5563;">Revisiting Transformer for Tabular Data.</p>
-                    <a href="https://arxiv.org/abs/2106.11959" target="_blank" rel="noopener noreferrer" class="text-blue font-bold">Read on arXiv &rarr;</a>
+                    <a href="https://arxiv.org/pdf/2106.11959" target="_blank" rel="noopener noreferrer"
+                        style="color: #2563eb; font-weight: 600;">Read on arXiv &rarr;</a>
                 </div>
-                <div class="card" style="padding: 1.5rem;">
+                <div class="card" style="padding: 2rem; text-align: left;">
                     <h4 class="font-bold text-lg mb-2">Optuna</h4>
                     <p class="mb-4" style="color: #4b5563;">A Next-generation Hyperparameter Optimization Framework.</p>
-                    <a href="https://optuna.org/" target="_blank" rel="noopener noreferrer" class="text-blue font-bold">Visit Website &rarr;</a>
+                    <a href="https://optuna.org/" target="_blank" rel="noopener noreferrer"
+                        style="color: #2563eb; font-weight: 600;">Visit Website &rarr;</a>
                 </div>
             </div>
         </section>
@@ -334,12 +463,19 @@
     <footer id="contact">
         <h2>Get in Touch</h2>
         <div class="footer-links">
-            <a href="https://www.linkedin.com/in/jean-baptiste-bobant/" target="_blank" rel="noopener noreferrer" class="footer-link">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" /></svg>
+            <a href="https://www.linkedin.com/in/jean-baptiste-bobant/" target="_blank" rel="noopener noreferrer"
+                class="footer-link">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                </svg>
                 LinkedIn
             </a>
             <a href="https://github.com/jbbobant" target="_blank" rel="noopener noreferrer" class="footer-link">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.109-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" /></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.109-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                </svg>
                 GitHub
             </a>
         </div>
@@ -347,4 +483,5 @@
     </footer>
 
 </body>
+
 </html>
