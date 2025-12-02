@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JB BOBANT - Lung Tumor Segmentation</title>
+    <!-- Lien vers votre fichier CSS local -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Configuration de la police Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <!-- Styles spécifiques à cette page -->
+    <style>
+        /* Grilles responsives */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .grid-2 {
+                grid-template-columns: repeat(2, 1fr);
+                align-items: start;
+            }
+
+            .grid-3 {
+                grid-template-columns: repeat(3, 1fr);
+                align-items: start;
+            }
+        }
+
+        /* Hero spécifique */
+        .project-hero {
+            text-align: center;
+            padding: 6rem 1.5rem;
+            background-color: white;
+        }
+
+        .project-hero h1 {
+            font-size: 2.5rem;
+            color: #2563eb;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        /* Boutons */
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .btn svg {
+            width: 1.25rem;
+            height: 1.25rem;
+            margin-right: 0.5rem;
+            display: inline-block;
+            vertical-align: text-bottom;
+        }
+
+        /* Pipeline Visualization - Adaptatif */
+        .pipeline-container {
+            max-width: 64rem;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .pipeline-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            width: 100%;
+        }
+
+        .pipeline-box {
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem 2rem;
+            text-align: center;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            width: fit-content;
+            max-width: 100%;
+            min-width: 200px;
+            height: auto;
+            margin: 0 auto;
+            flex: 1 1 auto;
+        }
+
+        .pipeline-arrow {
+            font-size: 2rem;
+            color: #3b82f6;
+            text-align: center;
+            width: 100%;
+            margin: 0.25rem 0;
+        }
+
+        /* Carte générique */
+        .card {
+            height: auto !important;
+            min-height: 0;
+        }
+
+        /* Utilitaires */
+        .text-blue {
+            color: #2563eb;
+        }
+
+        .font-bold {
+            font-weight: 700;
+        }
+
+        .mb-4 {
+            margin-bottom: 1rem;
+        }
+
+        .bg-gray-100-box {
+            background-color: #f3f4f6;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+
+        /* Espacement titres */
+        section h2 {
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========== Header =========== -->
+    <header>
+        <nav class="container">
+            <div class="logo">Jean-Baptiste BOBANT</div>
+            <div class="nav-links">
+                <a href="index.html" style="font-weight: 500; color: #4b5563; display: flex; align-items: center;">
+                    <span style="margin-right: 0.5rem;">&larr;</span> Back to Portfolio
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- =========== Project Hero Section =========== -->
+        <section id="hero" class="project-hero">
+            <div class="container">
+                <h1>Volumetric Lung Tumor Segmentation</h1>
+                <p style="font-size: 1.25rem; color: #4b5563; max-width: 48rem; margin: 0 auto;">
+                    Automated detection in 3D CT Scans using PyTorch Lightning & U-Net
+                </p>
+
+                <div class="btn-group">
+                    <a href="https://github.com/jbbobant/medical-image-analysis" target="_blank"
+                        rel="noopener noreferrer" class="btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.085 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                        </svg>
+                        View GitHub Repo
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========== Research Objective =========== -->
+        <section id="objective" class="container">
+            <h2>Project Overview</h2>
+            <div class="card"
+                style="flex-direction: row; flex-wrap: wrap; border: none; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                <div style="padding: 3rem; flex: 1; min-width: 300px;">
+                    <h3 class="text-blue mb-4 font-bold text-xl">The Medical Challenge</h3>
+                    <p class="mb-4" style="font-size: 1.1rem; line-height: 1.8;">
+                        Manual segmentation of lung nodules is a labor-intensive and subjective task for radiologists. A
+                        major difficulty lies in the <strong>severe class imbalance</strong>: a full-body CT scan
+                        contains hundreds of slices, but tumors may only appear in a tiny fraction of them.
+                    </p>
+                    <p class="font-bold" style="font-size: 1.1rem; color: #111827;">
+                        This project is inspired from LungNet Architecture, a deep learning framework that translates 3D
+                        volumetric data
+                        into 2D slices for precise, pixel-wise tumor segmentation using a U-Net architecture.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========== Architecture Schema =========== -->
+        <section id="architecture" class="container">
+            <h2 style="margin-top: 4rem;">Model Architecture</h2>
+            <div class="card" style="padding: 2rem; text-align: center;">
+                <p class="mb-8" style="font-size: 1.1rem; max-width: 48rem; margin: 0 auto 2rem auto; color: #4b5563;">
+                    We utilize a classic <strong>U-Net architecture</strong>, the gold standard for biomedical image
+                    segmentation. It features a contracting encoder path to capture context and a symmetric expanding
+                    decoder path for precise localization.
+                </p>
+
+                <!-- Placeholder for your Schema -->
+                <div class="bg-gray-100-box">
+                    <!-- Remplacer 'unet_schema.png' par votre image réelle -->
+                    <img src="unet.png"
+                        onerror="this.src='https://placehold.co/800x400/e5e7eb/a3a3a3?text=U-Net+Architecture+Schema'"
+                        alt="U-Net Architecture Schema" style="border-radius: 0.5rem; max-width: 100%; height: auto;">
+                    <p style="font-size: 0.875rem; color: #6b7280; margin-top: 1rem;">Schematic representation of the
+                        U-Net implementation used in the project.</p>
+                </div>
+
+                <div class="grid-2" style="text-align: left; margin-top: 2rem;">
+                    <div>
+                        <h4 class="font-bold text-lg mb-2 text-blue">Encoder (Contracting Path)</h4>
+                        <p class="text-gray-600">Captures high-level semantic context using DoubleConv
+                            blocks (Conv2d -> ReLU -> Conv2d -> ReLU) followed by Max Pooling.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg mb-2 text-blue">Decoder (Expanding Path)</h4>
+                        <p class="text-gray-600">Recovers spatial information using bilinear upsampling and skip
+                            connections that concatenate features from the encoder.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========== Pipeline =========== -->
+        <section id="pipeline" class="container">
+            <h2 style="margin-top: 4rem;">Data Processing Pipeline</h2>
+            <div class="pipeline-container">
+
+                <!-- Input -->
+                <div class="pipeline-box" style="background-color: #2563eb; color: white; border: none;">
+                    <h4 class="font-bold text-lg">Input: 3D NIfTI Volumes</h4>
+                    <p style="font-size: 0.875rem; opacity: 0.9;">Raw CT Scans (.nii.gz)</p>
+                </div>
+
+                <div class="pipeline-arrow">&darr;</div>
+
+                <!-- Preprocessing -->
+                <div class="pipeline-row">
+                    <div class="pipeline-box">
+                        <h4 class="font-bold text-lg">Z-Axis Clipping</h4>
+                        <p style="font-size: 0.875rem; color: #4b5563;">Removing first 30 slices (abdomen/artifacts)</p>
+                    </div>
+                    <div class="pipeline-box">
+                        <h4 class="font-bold text-lg">Normalization</h4>
+                        <p style="font-size: 0.875rem; color: #4b5563;">Standardizing Hounsfield Units (Factor: 3071.0)
+                        </p>
+                    </div>
+                </div>
+
+                <div class="pipeline-arrow">&darr;</div>
+
+                <!-- Conversion -->
+                <div class="pipeline-box" style="width: 100%; max-width: 450px;">
+                    <h4 class="font-bold text-lg">2D Slicing</h4>
+                    <p style="font-size: 0.875rem; color: #4b5563;">Converting volumes to 256x256 .npy slices</p>
+                </div>
+
+                <div class="pipeline-arrow">&darr;</div>
+
+                <!-- Training Strategy -->
+                <div class="pipeline-row">
+                    <div class="pipeline-box" style="border-color: #2563eb; border-width: 2px;">
+                        <h4 class="font-bold text-lg text-blue">Weighted Sampling</h4>
+                        <p style="font-size: 0.875rem; color: #4b5563;">Over-sampling rare tumor slices to fix class
+                            imbalance</p>
+                    </div>
+                    <div class="pipeline-box" style="border-color: #2563eb; border-width: 2px;">
+                        <h4 class="font-bold text-lg text-blue">Augmentation</h4>
+                        <p style="font-size: 0.875rem; color: #4b5563;">Affine & Elastic deformations via
+                            <code>imgaug</code>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="pipeline-arrow">&darr;</div>
+
+                <!-- Output -->
+                <div class="pipeline-box" style="background-color: #10b981; color: white; border: none;">
+                    <h4 class="font-bold text-lg">Output: Segmentation Mask</h4>
+                    <p style="font-size: 0.875rem; opacity: 0.9;">Pixel-wise tumor probability map</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- =========== Technical Stack =========== -->
+        <section id="stack" class="container">
+            <h2 style="margin-top: 4rem;">Technical Stack</h2>
+            <div class="grid-2">
+                <div class="card" style="padding: 2rem;">
+                    <h3 class="text-blue mb-4 font-bold text-xl">Core Technologies</h3>
+                    <ul style="list-style: none; padding: 0; line-height: 1.8;">
+                        <li><strong>PyTorch & Lightning:</strong> For modular model definition and training loops.</li>
+                        <li><strong>NiBabel:</strong> For handling NIfTI medical imaging formats.</li>
+                        <li><strong>ImgAug:</strong> For robust medical image augmentation.</li>
+                        <li><strong>OpenCV:</strong> For image resizing and post-processing.</li>
+                    </ul>
+                </div>
+                <div class="card" style="padding: 2rem;">
+                    <h3 class="text-blue mb-4 font-bold text-xl">Current Status</h3>
+                    <p class="text-gray-600">
+                        The pipeline for data ingestion, preprocessing, and model definition is fully implemented.
+                    </p>
+                    <p class="text-gray-600 mt-2">
+                        <strong>Next Steps:</strong> Running full training jobs on GPU, tuning hyperparameters (learning
+                        rate, batch size), and generating qualitative segmentation results on test patients.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========== Further Reading =========== -->
+        <section id="reading" class="container">
+            <h2 style="margin-top: 4rem;">Relevant Research</h2>
+            <div class="grid-3">
+                <!-- Paper 1 -->
+                <div class="card" style="padding: 1.5rem;">
+                    <h4 class="font-bold text-lg mb-2">LungNet</h4>
+                    <p class="mb-4" style="color: #4b5563;">A Hybrid Deep-CNN for Lung Tumor Detection in CT Scans</p>
+                    <a href="https://arxiv.org/abs/2212.13971" target="_blank" rel="noopener noreferrer"
+                        class="text-blue font-bold">
+                        Read on arXiv &rarr;
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- =========== Footer =========== -->
+    <footer id="contact">
+        <h2>Get in Touch</h2>
+        <div class="footer-links">
+            <a href="https://www.linkedin.com/in/jean-baptiste-bobant/" target="_blank" rel="noopener noreferrer"
+                class="footer-link">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                </svg>
+                LinkedIn
+            </a>
+            <a href="https://github.com/jbbobant" target="_blank" rel="noopener noreferrer" class="footer-link">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.109-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                </svg>
+                GitHub
+            </a>
+        </div>
+        <p class="footer-copy">&copy; 2024 Jean-Baptiste Bobant. All rights reserved.</p>
+    </footer>
+
+</body>
+
+</html>
