@@ -10,6 +10,41 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Specific overrides for index.html if needed */
+        /* Bento Grid for 3 items */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            max-width: 64rem;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 768px) {
+            .bento-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            /* Make the first item span 2 columns for a bento look with 3 items */
+            .bento-grid>.card:first-child {
+                grid-column: span 2;
+            }
+
+            /* Or alternatively, if you want 3 columns on large screens: */
+        }
+
+        @media (min-width: 1024px) {
+            .bento-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .bento-grid>.card:first-child {
+                grid-column: auto;
+                /* Reset span */
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -44,13 +79,43 @@
         </section>
 
         <!-- =========== Projects Section =========== -->
+        <!-- =========== Projects Section =========== -->
         <section id="projects" class="container">
             <h2>My Projects</h2>
-            <div class="projects-grid">
+            <!-- Using bento-grid class defined in style block above for 3 items layout -->
+            <div class="bento-grid">
 
+                <!-- Project 1: Lung Tumor Segmentation (NEW) -->
+                <div class="card">
+                    <img src="LungCancer.webp"
+                        onerror="this.src='https://placehold.co/600x400/a5f3fc/0891b2?text=Lung+Tumor+Project'"
+                        alt="Lung Tumor Segmentation project illustration" class="card-img">
+                    <div class="card-content">
+                        <h3>Lung Tumor Segmentation</h3>
+                        <p>
+                            Lung Tumor Segmentation from human CT scans using U-Net architecture with data augmentation
+                            and transfer learning to improve model performance.
+                        </p>
+                        <a href="lung.html" class="btn">See details</a>
+                    </div>
+                </div>
 
+                <!-- Project 2: Wine -->
+                <div class="card">
+                    <img src="vine.jpg"
+                        onerror="this.src='https://placehold.co/600x400/fca5a5/b91c1c?text=Wine+Project'"
+                        alt="Wine project illustration" class="card-img">
+                    <div class="card-content">
+                        <h3>Wine Quality Prediction</h3>
+                        <p>
+                            Deep Learning model (MLP) to predict wine quality based on meteorological and viticultural
+                            data bridging vintage quality and weather conditions.
+                        </p>
+                        <a href="wine.html" class="btn">See details</a>
+                    </div>
+                </div>
 
-                <!-- Project 1: Bioinformatics -->
+                <!-- Project 3: Bioinformatics -->
                 <div class="card">
                     <img src="dna.jpg"
                         onerror="this.src='https://placehold.co/600x400/a5f3fc/0891b2?text=Bio-info+Project'"
@@ -62,36 +127,6 @@
                             cell-type annotation using Transformers.
                         </p>
                         <a href="hvg.html" class="btn">See details</a>
-                    </div>
-                </div>
-                <!-- Project 2: Medical Image Analysis -->
-                <div class="card">
-                    <img src="LungCancer.webp"
-                        onerror="this.src='https://placehold.co/600x400/a5f3fc/0891b2?text=Bio-info+Project'"
-                        alt="Lung Tumor Segmentation project illustration" class="card-img">
-                    <div class="card-content">
-                        <h3>Lung Tumor Segmentation</h3>
-                        <p>
-                            Lung Tumor Segmentation from human CT scans using U-Net architecture with data augmentation
-                            and
-                            transfer learning to improve model performance.
-                        </p>
-                        <a href="Lung_tumor.html" class="btn">See details</a>
-                    </div>
-                    <!-- Project 3: Wine -->
-                    <div class="card">
-                        <img src="vine.jpg"
-                            onerror="this.src='https://placehold.co/600x400/fca5a5/b91c1c?text=Wine+Project'"
-                            alt="Wine project illustration" class="card-img">
-                        <div class="card-content">
-                            <h3>Wine Quality Prediction</h3>
-                            <p>
-                                Deep Learning model (MLP) to predict wine quality based on meteorological and
-                                viticultural
-                                data bridging vintage quality and weather conditions.
-                            </p>
-                            <a href="wine.html" class="btn">See details</a>
-                        </div>
                     </div>
                 </div>
 
@@ -391,6 +426,7 @@
     <footer id="contact">
         <h2>Get in Touch</h2>
         <p>I'm currently looking for new opportunities. Feel free to reach out!</p>
+
         <div class="footer-links">
             <a href="mailto:bobantjeanbaptiste@gmail.com" class="footer-link">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
